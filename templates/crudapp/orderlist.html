@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Display Orders</title>
+{% endblock %}
+
+{% block content %}
+        <table class="table">
+        <thead>
+            <tr>
+                <th>Customer ID</th>
+                <th>Customer Name</th>
+                <th>Choice</th>
+                <th>Payment Method</th>
+                <th>Product Image</th>
+                <th>Purchase Date</th>
+                <th>Email ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr>
+                <td>{{i.cid}}</td>
+                <td>{{i.name}}</td>
+                <td>{{i.choice}}</td>
+                <td>{{i.paymentMode}}</td>
+                <td><img src="{{i.image.url}}" width="50" height="50"></td>
+
+                <td>{{i.date}}</td>
+                <td>{{i.email}}</td>
+                <td>
+                    <button class="btn btn-outline-warning"><a href="{% url 'edit_url' i.cid %}">Edit </a></button>
+                </td>
+                <td>
+                    <button class="btn btn-outline-danger"><a href="{% url 'del_url' i.cid %}">Delete</a></button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+{% endblock %}
+

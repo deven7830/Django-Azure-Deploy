@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>Sign Up</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <br/>
+ <form id="myForm" method="post" action="{% url 'signup_url' %}">
+    {% csrf_token %}
+    {{form|crispy}}
+    <input type="submit" value="SIGN UP"/>
+
+ </form>
+
+ <div id="result"></div>
+
+ <script>
+     // Use JavaScript to handle the form submission and display the JSON response
+     document.getElementById("myForm").addEventListener("submit", function(event) {
+         event.preventDefault(); // Prevent the default form submission
+         const formData = new FormData(this);
+         
+         fetch(this.action, {
+             method: "POST",
+             body: formData,
+             headers: {
+                 "X-CSRFToken": formData.get("csrfmiddlewaretoken") // Include CSRF token
+             }
+         })
+         .then(response => response.json())
+         .then(data => {
+             document.getElementById("result").innerHTML = JSON.stringify(data);
+         })
+         .catch(error => {
+             console.error('Error:', error);
+         });
+     });
+ </script>
+
+</div>
+
+
+{% endblock %}

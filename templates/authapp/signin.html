@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>Sign In</title>
+{% endblock %}
+
+{% block content %}
+<div class="container jumbotron">
+    <br/>
+ <form method="post">
+    {% csrf_token %}
+    <label for="un">USERNAME:</label>
+    <input type="text" id="un" name="un" placeholder="Enter Username"/>
+    <br/><br/><br/><br/>
+
+    <label for="pw">PASSWORD:</label>
+    <input type="password" id="pw" name="pw" placeholder="Enter Username"/>
+    <br/><br/>
+    <input type="submit" value="SIGN IN"/>
+
+ </form>
+</div>
+
+
+{% endblock %}
