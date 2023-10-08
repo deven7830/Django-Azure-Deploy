@@ -55,5 +55,6 @@ class DeleteOrder(View):
         obj=Tanishq.objects.get(cid=pk)
         obj.delete()
         return redirect('display_url')
+    
 
 
